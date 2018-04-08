@@ -207,6 +207,15 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "SmartThreadPool.dll/2.2.4": {
+        "type": "package",
+        "compile": {
+          "lib/net45/SmartThreadPool.dll": {}
+        },
+        "runtime": {
+          "lib/net45/SmartThreadPool.dll": {}
+        }
       }
     }
   },
@@ -680,6 +689,21 @@
         "netstandard.library.2.0.0.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "SmartThreadPool.dll/2.2.4": {
+      "sha512": "T2F27k04orKdqAAYmgWjkVj/f0a+J8KACYRFGgMt9UxY3D4AEU6y7PdmuZpSE+xwXiZiDk4VkqeEKzZgzcsluA==",
+      "type": "package",
+      "path": "smartthreadpool.dll/2.2.4",
+      "files": [
+        "lib/net20/SmartThreadPool.dll",
+        "lib/net20/SmartThreadPool.pdb",
+        "lib/net40/SmartThreadPool.dll",
+        "lib/net40/SmartThreadPool.pdb",
+        "lib/net45/SmartThreadPool.dll",
+        "lib/net45/SmartThreadPool.pdb",
+        "smartthreadpool.dll.2.2.4.nupkg.sha512",
+        "smartthreadpool.dll.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -746,5 +770,27 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'GeneticSharp 1.2.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "GeneticSharp",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'SmartThreadPool.dll 2.2.4' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "SmartThreadPool.dll",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.0"
+      ]
+    }
+  ]
 }
