@@ -28,7 +28,7 @@ public class Fitness : IFitness
                 foreach(var request in requests)
                 {
                     var latencyToCache = request.endpoint.connections_to_servers.Where(x=>x.server == assignement.server).FirstOrDefault().latency;
-                    var points = request.number_of_requests * (request.endpoint.latency_to_server - latencyToCache) - reqestPoints[request];
+                    var points = request.number_of_requests * (request.endpoint.latency_to_server - latencyToCache) - requestPoints[request];
                     requestPoints[request] = points;
                     fitness += points;
                 }
