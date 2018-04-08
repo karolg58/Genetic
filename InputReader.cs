@@ -11,7 +11,7 @@ namespace genetic
 
         public DataModel ReadDataFromFile(string path)
         {
-            string[] file_lines = File.ReadAllLines(path);
+            var file_lines = File.ReadAllLines(path).ToList();
 
             var first_line = file_lines[0].Split(' ');
             data_model.number_of_videos_V = Int32.Parse(first_line[0]);
@@ -31,22 +31,42 @@ namespace genetic
                 data_model.videos.Add(new Video(i, Int32.Parse(video_sizes[i])));
             }
 
-            var endpoint_lines = file_lines.ToList();
-            endpoint_lines.RemoveAt(0);
-            endpoint_lines.RemoveAt(0);
+            file_lines.RemoveAt(0);
+            file_lines.RemoveAt(0);
 
             for(int i = 0; i < data_model.number_of_endpoints_E; i++)
             {
-                var endpoint_line = endpoint_lines[i].Split(' ');
+                var endpoint_line = file_lines[0].Split(' ');
                 Endpoint endpoint = new Endpoint(i, Int32.Parse(endpoint_line[0]), Int32.Parse(endpoint_line[1]));
-                endpoint_lines.RemoveAt(0);
+                file_lines.RemoveAt(0);
                 for(int j = 0; j < endpoint.number_of_cache_servers; j++)
                 {
-                    
+                    var cache_line = file_lines[0].Split(' ');
+                    Connection connection = new Connection(
+                        data_model.servers.Where(x=>x.id == Int32.Parse(cache_line[0])).FirstOrDefault(),
+                        endpoint,
+                        Int32.Parse(cache_line[1])
+                    );
+                    endpoint.connections_to_servers.Add(connection);
+                    data_model.connections.Add(connection);
+                    file_lines.RemoveAt(0);
                 }
+                data_model.endpoints.Add(endpoint);
             }
 
-            Console.WriteLine(endpoint_lines[0]);
+            for(int i = 0; i < data_model.number_of_requests_R; i++)
+            {
+                var request_line = file_lines[0].Split(' ');
+                Console.WriteLine(file_lines[0]);
+                Request request = new Request(
+                    data_model.videos.Where(x=>x.id == Int32.Parse(request_line[0])).FirstOrDefault(),
+                    data_model.endpoints.Where(x=>x.id == Int32.Parse(request_line[1])).FirstOrDefault(),
+                    Int32.Parse(request_line[2])
+                );
+                file_lines.RemoveAt(0);
+            }
+
+            Console.WriteLine(file_lines[0]);
             return data_model;
         }
     }
