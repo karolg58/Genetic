@@ -17,7 +17,6 @@ public class Fitness : IFitness
 
         foreach (var assignement in ourChromosome.VideoAssignments)
         {
-            //TODO
             if(assignement.video.size >= serverFreeMemory[assignement.server.id])
             {
                 serverFreeMemory[assignement.server.id] -= assignement.video.size;
