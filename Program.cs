@@ -7,7 +7,7 @@ namespace genetic
         static void Main(string[] args)
         {
             InputReader input_reader = new InputReader();
-            input_reader.ReadDataFromFile("data/me_at_the_zoo.in");
+            DataModel data_model = input_reader.ReadDataFromFile("data/me_at_the_zoo.in");
             Console.WriteLine("Hello World!");
         }
     }
