@@ -57,7 +57,6 @@ namespace genetic
             for(int i = 0; i < data_model.number_of_requests_R; i++)
             {
                 var request_line = file_lines[0].Split(' ');
-                Console.WriteLine(file_lines[0]);
                 Request request = new Request(
                     data_model.videos.Where(x=>x.id == Int32.Parse(request_line[0])).FirstOrDefault(),
                     data_model.endpoints.Where(x=>x.id == Int32.Parse(request_line[1])).FirstOrDefault(),
@@ -66,7 +65,6 @@ namespace genetic
                 file_lines.RemoveAt(0);
             }
 
-            Console.WriteLine(file_lines[0]);
             return data_model;
         }
     }
