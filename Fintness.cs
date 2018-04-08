@@ -22,6 +22,7 @@ public class Fitness : IFitness
             if(assignement.video.size >= serverFreeMemory[assignement.server.id])
             {
                 serverFreeMemory[assignement.server.id] -= assignement.video.size;
+
                 
             }
         }
