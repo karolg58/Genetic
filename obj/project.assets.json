@@ -2,6 +2,17 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
+      "GeneticSharp/2.0.0-rc1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/GeneticSharp.Domain.dll": {},
+          "lib/netstandard2.0/GeneticSharp.Infrastructure.Framework.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/GeneticSharp.Domain.dll": {},
+          "lib/netstandard2.0/GeneticSharp.Infrastructure.Framework.dll": {}
+        }
+      },
       "Microsoft.NETCore.App/2.0.0": {
         "type": "package",
         "dependencies": {
@@ -200,6 +211,19 @@
     }
   },
   "libraries": {
+    "GeneticSharp/2.0.0-rc1": {
+      "sha512": "uUe7iZqQsEVMmGqdiH0A0PBIKwpzH8e6xaoD2tOtjJEQ7zpxBktNo21rAPcOQ0JdyG33U2KUeQlm5ffv2M8Cnw==",
+      "type": "package",
+      "path": "geneticsharp/2.0.0-rc1",
+      "files": [
+        "geneticsharp.2.0.0-rc1.nupkg.sha512",
+        "geneticsharp.nuspec",
+        "lib/net462/GeneticSharp.Domain.dll",
+        "lib/net462/GeneticSharp.Infrastructure.Framework.dll",
+        "lib/netstandard2.0/GeneticSharp.Domain.dll",
+        "lib/netstandard2.0/GeneticSharp.Infrastructure.Framework.dll"
+      ]
+    },
     "Microsoft.NETCore.App/2.0.0": {
       "sha512": "/mzXF+UtZef+VpzzN88EpvFq5U6z4rj54ZMq/J968H6pcvyLOmcupmTRpJ3CJm8ILoCGh9WI7qpDdiKtuzswrQ==",
       "type": "package",
@@ -660,31 +684,29 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "GeneticSharp >= 2.0.0-rc1",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\karol\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\mdzpr\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\karol\\OneDrive\\Pulpit\\genetic\\genetic.csproj",
+      "projectUniqueName": "C:\\Users\\mdzpr\\source\\repos\\genetic\\Genetic\\genetic.csproj",
       "projectName": "genetic",
-      "projectPath": "C:\\Users\\karol\\OneDrive\\Pulpit\\genetic\\genetic.csproj",
-      "packagesPath": "C:\\Users\\karol\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\karol\\OneDrive\\Pulpit\\genetic\\obj\\",
+      "projectPath": "C:\\Users\\mdzpr\\source\\repos\\genetic\\Genetic\\genetic.csproj",
+      "packagesPath": "C:\\Users\\mdzpr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mdzpr\\source\\repos\\genetic\\Genetic\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\karol\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\mdzpr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -707,6 +729,10 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "GeneticSharp": {
+            "target": "Package",
+            "version": "[2.0.0-rc1, )"
+          },
           "Microsoft.NETCore.App": {
             "target": "Package",
             "version": "[2.0.0, )",

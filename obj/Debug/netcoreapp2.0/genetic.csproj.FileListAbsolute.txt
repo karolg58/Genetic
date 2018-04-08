@@ -8,3 +8,13 @@ C:\Users\karol\OneDrive\Pulpit\genetic\obj\Debug\netcoreapp2.0\genetic.AssemblyI
 C:\Users\karol\OneDrive\Pulpit\genetic\obj\Debug\netcoreapp2.0\genetic.AssemblyInfo.cs
 C:\Users\karol\OneDrive\Pulpit\genetic\obj\Debug\netcoreapp2.0\genetic.dll
 C:\Users\karol\OneDrive\Pulpit\genetic\obj\Debug\netcoreapp2.0\genetic.pdb
+C:\Users\mdzpr\source\repos\genetic\Genetic\bin\Debug\netcoreapp2.0\genetic.deps.json
+C:\Users\mdzpr\source\repos\genetic\Genetic\bin\Debug\netcoreapp2.0\genetic.runtimeconfig.json
+C:\Users\mdzpr\source\repos\genetic\Genetic\bin\Debug\netcoreapp2.0\genetic.runtimeconfig.dev.json
+C:\Users\mdzpr\source\repos\genetic\Genetic\bin\Debug\netcoreapp2.0\genetic.dll
+C:\Users\mdzpr\source\repos\genetic\Genetic\bin\Debug\netcoreapp2.0\genetic.pdb
+C:\Users\mdzpr\source\repos\genetic\Genetic\obj\Debug\netcoreapp2.0\genetic.csproj.CoreCompileInputs.cache
+C:\Users\mdzpr\source\repos\genetic\Genetic\obj\Debug\netcoreapp2.0\genetic.AssemblyInfoInputs.cache
+C:\Users\mdzpr\source\repos\genetic\Genetic\obj\Debug\netcoreapp2.0\genetic.AssemblyInfo.cs
+C:\Users\mdzpr\source\repos\genetic\Genetic\obj\Debug\netcoreapp2.0\genetic.dll
+C:\Users\mdzpr\source\repos\genetic\Genetic\obj\Debug\netcoreapp2.0\genetic.pdb
