@@ -34,5 +34,22 @@ namespace genetic
         {
             return !(first == second);
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Server;
+
+            if (other == null)
+            {
+                return false;
+            }
+
+            return this.id == other.id;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.GetHashCode();
+        }
     }
 }

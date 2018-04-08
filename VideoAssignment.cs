@@ -32,5 +32,22 @@ namespace genetic
         {
             return !(first == second);
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as VideoAssignment;
+
+            if (other == null)
+            {
+                return false;
+            }
+
+            return this.server == other.server && this.video == other.video;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.GetHashCode();
+        }
     }
 }
