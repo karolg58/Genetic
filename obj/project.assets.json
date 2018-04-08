@@ -689,24 +689,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mdzpr\\.nuget\\packages\\": {},
+    "C:\\Users\\karol\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mdzpr\\source\\repos\\genetic\\Genetic\\genetic.csproj",
+      "projectUniqueName": "c:\\Users\\karol\\OneDrive\\Pulpit\\Genetic2\\genetic.csproj",
       "projectName": "genetic",
-      "projectPath": "C:\\Users\\mdzpr\\source\\repos\\genetic\\Genetic\\genetic.csproj",
-      "packagesPath": "C:\\Users\\mdzpr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mdzpr\\source\\repos\\genetic\\Genetic\\obj\\",
+      "projectPath": "c:\\Users\\karol\\OneDrive\\Pulpit\\Genetic2\\genetic.csproj",
+      "packagesPath": "C:\\Users\\karol\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\karol\\OneDrive\\Pulpit\\Genetic2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\mdzpr\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\karol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
