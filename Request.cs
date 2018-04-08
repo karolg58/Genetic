@@ -2,7 +2,7 @@ using System;
 
 namespace genetic
 {
-    class Request
+    public class Request
     {
         public Video video;
         public Endpoint endpoint;
