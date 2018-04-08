@@ -55,11 +55,10 @@ namespace genetic
             for(int i = 0; i < DataModel.number_of_requests_R; i++)
             {
                 var request_line = file_lines[0].Split(' ');
-                Request request = new Request(
-                    DataModel.videos.Where(x=>x.id == Int32.Parse(request_line[0])).FirstOrDefault(),
-                    DataModel.endpoints.Where(x=>x.id == Int32.Parse(request_line[1])).FirstOrDefault(),
-                    Int32.Parse(request_line[2])
-                );
+                var video = DataModel.videos.Where(x=>x.id == Int32.Parse(request_line[0])).FirstOrDefault();
+                var endpoint = DataModel.endpoints.Where(x=>x.id == Int32.Parse(request_line[1])).FirstOrDefault();
+                Request request = new Request(video, endpoint,Int32.Parse(request_line[2]));
+                video.endpoints.Add(endpoint);
                 DataModel.requests.Add(request);
                 file_lines.RemoveAt(0);
             }

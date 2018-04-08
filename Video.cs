@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace genetic
 {
@@ -6,6 +7,7 @@ namespace genetic
     {
         public int id;
         public int size; //MB
+        public List<Endpoint> endpoints = new List<Endpoint>();
 
         public Video(int id, int size)
         {
