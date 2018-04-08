@@ -12,6 +12,7 @@ public class Chromosome : ChromosomeBase
         VideoAssignments = new List<VideoAssignment>(length);
         for (int i = 0; i < length; i++)
         {
+            VideoAssignments.Add(null);
             ReplaceGene(i,GenerateGene(i));
         }
     }

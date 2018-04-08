@@ -11,8 +11,7 @@ public class Fitness : IFitness
         var ourChromosome = chromosome as Chromosome;
         double fitness = 0;
 
-        List<int> serverFreeMemory = new List<int>(DataModel.number_of_cache_servers_C);
-        for(int i = 0; i < serverFreeMemory.Count; i++) serverFreeMemory[i] = DataModel.capacity_of_server_X;
+        List<int> serverFreeMemory = DataModel.servers.Select(x => x.capacity).ToList();
 
         Dictionary<Request, int> requestPoints = DataModel.requests.ToDictionary(x => x,x => 0);
 
