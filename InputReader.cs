@@ -58,7 +58,7 @@ namespace genetic
                 var video = DataModel.videos.Where(x=>x.id == Int32.Parse(request_line[0])).FirstOrDefault();
                 var endpoint = DataModel.endpoints.Where(x=>x.id == Int32.Parse(request_line[1])).FirstOrDefault();
                 Request request = new Request(video, endpoint,Int32.Parse(request_line[2]));
-                video.endpoints.Add(endpoint);
+                video.requests.Add(request);
                 DataModel.requests.Add(request);
                 file_lines.RemoveAt(0);
             }

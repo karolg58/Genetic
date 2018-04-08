@@ -7,7 +7,7 @@ namespace genetic
     {
         public int id;
         public int size; //MB
-        public List<Endpoint> endpoints = new List<Endpoint>();
+        public List<Request> requests = new List<Request>();
 
         public Video(int id, int size)
         {
