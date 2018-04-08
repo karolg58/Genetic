@@ -60,6 +60,7 @@ namespace genetic
                     DataModel.endpoints.Where(x=>x.id == Int32.Parse(request_line[1])).FirstOrDefault(),
                     Int32.Parse(request_line[2])
                 );
+                DataModel.requests.Add(request);
                 file_lines.RemoveAt(0);
             }
 
