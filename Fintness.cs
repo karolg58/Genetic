@@ -14,7 +14,7 @@ public class Fitness : IFitness
         List<int> serverFreeMemory = new List<int>(DataModel.number_of_cache_servers_C);
         for(int i = 0; i < serverFreeMemory.Count; i++) serverFreeMemory[i] = DataModel.capacity_of_server_X;
 
-        Dictionary<Request, int> reqestPoints = DataModel.requests.ToDictionary(x => x,x => 0);
+        Dictionary<Request, int> requestPoints = DataModel.requests.ToDictionary(x => x,x => 0);
 
         foreach (var assignement in ourChromosome.VideoAssignments)
         {
@@ -29,7 +29,7 @@ public class Fitness : IFitness
                 {
                     var latencyToCache = request.endpoint.connections_to_servers.Where(x=>x.server == assignement.server).FirstOrDefault().latency;
                     var points = request.number_of_requests * (request.endpoint.latency_to_server - latencyToCache) - reqestPoints[request];
-                    reqestPoints[request] = points;
+                    requestPoints[request] = points;
                     fitness += points;
                 }
             }
