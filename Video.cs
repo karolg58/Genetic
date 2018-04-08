@@ -12,5 +12,25 @@ namespace genetic
             this.id = id;
             this.size = size;
         }
+
+        public static bool operator ==(Video first, Video second)
+        {
+            if (((object)first == null) || ((object)second == null))
+            {
+                return false;
+            }
+
+            if (first.id == second.id)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool operator !=(Video first, Video second)
+        {
+            return !(first == second);
+        }
     }
 }
