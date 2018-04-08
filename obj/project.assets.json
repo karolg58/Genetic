@@ -2,6 +2,26 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
+      "GeneticSharp/1.2.0": {
+        "type": "package",
+        "dependencies": {
+          "SmartThreadPool.dll": "2.2.4"
+        },
+        "compile": {
+          "lib/net35/GeneticSharp.Domain.dll": {},
+          "lib/net35/GeneticSharp.Extensions.dll": {},
+          "lib/net35/GeneticSharp.Infrastructure.Framework.dll": {},
+          "lib/net35/GeneticSharp.Infrastructure.Threading.dll": {},
+          "lib/net35/NCalc.dll": {}
+        },
+        "runtime": {
+          "lib/net35/GeneticSharp.Domain.dll": {},
+          "lib/net35/GeneticSharp.Extensions.dll": {},
+          "lib/net35/GeneticSharp.Infrastructure.Framework.dll": {},
+          "lib/net35/GeneticSharp.Infrastructure.Threading.dll": {},
+          "lib/net35/NCalc.dll": {}
+        }
+      },
       "Microsoft.NETCore.App/2.0.0": {
         "type": "package",
         "dependencies": {
@@ -196,10 +216,35 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "SmartThreadPool.dll/2.2.4": {
+        "type": "package",
+        "compile": {
+          "lib/net45/SmartThreadPool.dll": {}
+        },
+        "runtime": {
+          "lib/net45/SmartThreadPool.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "GeneticSharp/1.2.0": {
+      "sha512": "lMJ4uK6KqGWjGlGVxeX4CHbK3F15usWA0flG3EtM6zJYe6TojQmrNNZNODRLTb3Sn2xe/sbVv6ES0QsjwNQ/Ng==",
+      "type": "package",
+      "path": "geneticsharp/1.2.0",
+      "files": [
+        "geneticsharp.1.2.0.nupkg.sha512",
+        "geneticsharp.nuspec",
+        "lib/net35/GeneticSharp.Domain.dll",
+        "lib/net35/GeneticSharp.Extensions.dll",
+        "lib/net35/GeneticSharp.Infrastructure.Framework.dll",
+        "lib/net35/GeneticSharp.Infrastructure.Framework.xml",
+        "lib/net35/GeneticSharp.Infrastructure.Threading.dll",
+        "lib/net35/GeneticSharp.Infrastructure.Threading.pdb",
+        "lib/net35/NCalc.dll"
+      ]
+    },
     "Microsoft.NETCore.App/2.0.0": {
       "sha512": "/mzXF+UtZef+VpzzN88EpvFq5U6z4rj54ZMq/J968H6pcvyLOmcupmTRpJ3CJm8ILoCGh9WI7qpDdiKtuzswrQ==",
       "type": "package",
@@ -656,10 +701,26 @@
         "netstandard.library.2.0.0.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "SmartThreadPool.dll/2.2.4": {
+      "sha512": "T2F27k04orKdqAAYmgWjkVj/f0a+J8KACYRFGgMt9UxY3D4AEU6y7PdmuZpSE+xwXiZiDk4VkqeEKzZgzcsluA==",
+      "type": "package",
+      "path": "smartthreadpool.dll/2.2.4",
+      "files": [
+        "lib/net20/SmartThreadPool.dll",
+        "lib/net20/SmartThreadPool.pdb",
+        "lib/net40/SmartThreadPool.dll",
+        "lib/net40/SmartThreadPool.pdb",
+        "lib/net45/SmartThreadPool.dll",
+        "lib/net45/SmartThreadPool.pdb",
+        "smartthreadpool.dll.2.2.4.nupkg.sha512",
+        "smartthreadpool.dll.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "GeneticSharp >= 1.2.0",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
   },
@@ -707,6 +768,10 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "GeneticSharp": {
+            "target": "Package",
+            "version": "[1.2.0, )"
+          },
           "Microsoft.NETCore.App": {
             "target": "Package",
             "version": "[2.0.0, )",
@@ -720,5 +785,27 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'GeneticSharp 1.2.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "GeneticSharp",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'SmartThreadPool.dll 2.2.4' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "SmartThreadPool.dll",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.0"
+      ]
+    }
+  ]
 }
