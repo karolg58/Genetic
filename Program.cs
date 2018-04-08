@@ -21,7 +21,7 @@ namespace genetic
             var mutation = new UniformMutation(true);
             
             var fitness = new Fitness();
-            var chromosome = new Chromosome(1000);
+            var chromosome = new Chromosome(10);
             var population = new Population(50, 50, chromosome);
 
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
