@@ -7,7 +7,7 @@ using GeneticSharp.Domain.Randomizations;
 public class Chromosome : ChromosomeBase
 {
     public List<VideoAssignment> VideoAssignments {get; private set;}
-    protected Chromosome(int length) : base(length)
+    public Chromosome(int length) : base(length)
     {
         VideoAssignments = new List<VideoAssignment>(length);
         for (int i = 0; i < length; i++)
