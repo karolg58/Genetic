@@ -17,7 +17,7 @@ public class Fitness : IFitness
 
         foreach (var assignement in ourChromosome.VideoAssignments)
         {
-            if(assignement.video.size >= serverFreeMemory[assignement.server.id])
+            if(assignement.video.size <= serverFreeMemory[assignement.server.id])
             {
                 serverFreeMemory[assignement.server.id] -= assignement.video.size;
 
@@ -25,14 +25,18 @@ public class Fitness : IFitness
 
                 foreach(var request in requests)
                 {
-                    var latencyToCache = request.endpoint.connections_to_servers.Where(x=>x.server == assignement.server).FirstOrDefault().latency;
-                    var points = request.number_of_requests * (request.endpoint.latency_to_server - latencyToCache) - requestPoints[request];
-                    requestPoints[request] = points;
-                    fitness += points;
+                    var latencyToCache = request.endpoint.connections_to_servers.Where(x=>x.server == assignement.server).FirstOrDefault()?.latency ?? request.endpoint.latency_to_server;
+                    var points = request.number_of_requests * (request.endpoint.latency_to_server - latencyToCache);
+                    if (points > requestPoints[request])
+                    {
+                        requestPoints[request] = points - requestPoints[request];
+                        fitness += points;
+                    }
                 }
             }
+            else fitness = 0;
         }
 
-        return fitness;
+        return System.Math.Floor(fitness * 1000 / DataModel.requests.Sum(x => x.number_of_requests));
     }
 }

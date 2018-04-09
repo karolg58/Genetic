@@ -18,14 +18,16 @@ namespace genetic
 
             var selection = new EliteSelection();
             var crossover = new CutAndSpliceCrossover();
-            var mutation = new UniformMutation(true);
+            var mutation = new TworsMutation();
             
             var fitness = new Fitness();
-            var chromosome = new Chromosome(10);
-            var population = new Population(50, 50, chromosome);
+            var chromosome = new Chromosome(100);
+            var population = new Population(500, 500, chromosome);
 
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new GenerationNumberTermination(100);
+            ga.Termination = new FitnessStagnationTermination(1000);
+            int i=0;
+            ga.GenerationRan += (_,__) => Console.WriteLine($"Generation: {i++}, Fitness: {ga.BestChromosome.Fitness}, Best genotype lenght: {ga.BestChromosome.Length}");
 
             Console.WriteLine("GA running...");
             ga.Start();
@@ -33,7 +35,6 @@ namespace genetic
 
             var bestChromosome = ga.BestChromosome as Chromosome;
             Console.WriteLine($"Best solution found has fitness: {bestChromosome.Fitness}.");
-		    Console.ReadKey();
 
 
             Console.WriteLine("Done");
