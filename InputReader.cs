@@ -63,6 +63,14 @@ namespace genetic
                 file_lines.RemoveAt(0);
             }
 
+            foreach (var server in DataModel.servers)
+            {
+                foreach (var video in DataModel.videos)
+                {
+                    DataModel.possibleVideoAssignments.Add(new VideoAssignment(server,video));
+                }
+            }
+
             return;
         }
     }

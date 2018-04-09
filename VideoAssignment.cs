@@ -6,6 +6,8 @@ namespace genetic
     {
         public Video video;
         public Server server;
+        public int Index {get;set;}
+        public bool IsActive {get;set;} = false;
 
         public VideoAssignment(Server server, Video video)
         {

@@ -15,5 +15,6 @@ namespace genetic
         public static List<Request> requests = new List<Request>();
         public static List<Server> servers = new List<Server>();
         public static List<Connection> connections = new List<Connection>();
+        public static List<VideoAssignment> possibleVideoAssignments = new List<VideoAssignment>();
     }
 }

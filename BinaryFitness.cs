@@ -3,19 +3,21 @@ using GeneticSharp.Domain.Fitnesses;
 using genetic;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
-public class Fitness : IFitness
+public class BinaryFitness : IFitness
 {
     public double Evaluate(IChromosome chromosome)
     {
-        var ourChromosome = chromosome as Chromosome;
+        var ourChromosome = (BinaryChromosome)chromosome;
         double fitness = 0;
 
         List<int> serverFreeMemory = DataModel.servers.Select(x => x.capacity).ToList();
 
         Dictionary<Request, int> requestPoints = DataModel.requests.ToDictionary(x => x,x => 0);
 
-        foreach (var assignement in ourChromosome.VideoAssignments)
+        var list = ourChromosome.VideoAssignments.Where(x => x.IsActive).ToList();
+        foreach (var assignement in list)
         {
             if(assignement.video.size <= serverFreeMemory[assignement.server.id])
             {
