@@ -18,11 +18,11 @@ namespace genetic
 
             var selection = new EliteSelection();
             var crossover = new CutAndSpliceCrossover();
-            var mutation = new TworsMutation();
+            var mutation = new Mutation();
             
             var fitness = new Fitness();
             var chromosome = new Chromosome(100);
-            var population = new Population(500, 500, chromosome);
+            var population = new Population(1000, 1000, chromosome);
 
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
             ga.Termination = new FitnessStagnationTermination(1000);

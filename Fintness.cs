@@ -15,10 +15,13 @@ public class Fitness : IFitness
 
         Dictionary<Request, int> requestPoints = DataModel.requests.ToDictionary(x => x,x => 0);
 
-        foreach (var assignement in ourChromosome.VideoAssignments)
+        List<VideoAssignment> videoAssignments = ourChromosome.VideoAssignments;
+        var fittingAssignments = new List<VideoAssignment>();
+        foreach (var assignement in videoAssignments)
         {
             if(assignement.video.size <= serverFreeMemory[assignement.server.id])
             {
+                fittingAssignments.Add(assignement);
                 serverFreeMemory[assignement.server.id] -= assignement.video.size;
 
                 var requests = assignement.video.requests;
@@ -29,13 +32,14 @@ public class Fitness : IFitness
                     var points = request.number_of_requests * (request.endpoint.latency_to_server - latencyToCache);
                     if (points > requestPoints[request])
                     {
-                        requestPoints[request] = points - requestPoints[request];
-                        fitness += points;
+                        fitness += points - requestPoints[request];
+                        requestPoints[request] = points;
                     }
                 }
             }
-            else fitness = 0;
         }
+
+        ourChromosome.ReplaceGenes(fittingAssignments);
 
         return System.Math.Floor(fitness * 1000 / DataModel.requests.Sum(x => x.number_of_requests));
     }
