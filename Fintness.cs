@@ -50,8 +50,10 @@ public class Fitness : IFitness
         var result = System.Math.Floor(fitness * 1000 / DataModel.requests.Sum(x => x.number_of_requests));
 
         DateTime t3 = DateTime.Now;
+
+        Program.fitnessGenerationTime += t3 -t0;
         
-        Console.WriteLine($"Fitnes timing: {(t3 - t0).TotalMilliseconds}ms, initialization = {(t1 - t0).TotalMilliseconds}ms, main loop: {(t2 - t1).TotalMilliseconds}ms, finishing: {(t3 - t2).TotalMilliseconds}ms");
+        // Console.WriteLine($"Fitnes timing: {(t3 - t0).TotalMilliseconds}ms, initialization = {(t1 - t0).TotalMilliseconds}ms, main loop: {(t2 - t1).TotalMilliseconds}ms, finishing: {(t3 - t2).TotalMilliseconds}ms");
 
         return result;
     }
