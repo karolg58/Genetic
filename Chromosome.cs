@@ -44,8 +44,13 @@ public class Chromosome : ChromosomeBase
     {
         while (newVideoAssignments.Count<2)
         {
-            newVideoAssignments.Add(GetAssignment());
-            newVideoAssignments = newVideoAssignments.Distinct().ToList();
+            var tmp = GetAssignment();
+            if (newVideoAssignments.Contains(tmp))
+            {
+                continue;
+            }
+            newVideoAssignments.Add(tmp);
+            // newVideoAssignments = newVideoAssignments.Distinct().ToList(); //StackOverflowException
         }
         // VideoAssignments = newVideoAssignments;
         Resize(newVideoAssignments.Count);
