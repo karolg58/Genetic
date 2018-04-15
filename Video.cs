@@ -8,6 +8,7 @@ namespace genetic
         public int id;
         public int size; //MB
         public List<Request> requests = new List<Request>();
+        public Dictionary<int,List<Request>> dict {get;set;} = new Dictionary<int, List<Request>>();
 
         public Video(int id, int size)
         {

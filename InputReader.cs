@@ -41,7 +41,7 @@ namespace genetic
                 {
                     var cache_line = file_lines[0].Split(' ');
                     Connection connection = new Connection(
-                        DataModel.servers.Where(x=>x.id == Int32.Parse(cache_line[0])).FirstOrDefault(),
+                        DataModel.servers[Int32.Parse(cache_line[0])],
                         endpoint,
                         Int32.Parse(cache_line[1])
                     );
@@ -55,13 +55,23 @@ namespace genetic
             for(int i = 0; i < DataModel.number_of_requests_R; i++)
             {
                 var request_line = file_lines[0].Split(' ');
-                var video = DataModel.videos.Where(x=>x.id == Int32.Parse(request_line[0])).FirstOrDefault();
-                var endpoint = DataModel.endpoints.Where(x=>x.id == Int32.Parse(request_line[1])).FirstOrDefault();
-                Request request = new Request(video, endpoint,Int32.Parse(request_line[2]));
+                var video = DataModel.videos[Int32.Parse(request_line[0])];
+                var endpoint = DataModel.endpoints[Int32.Parse(request_line[1])];
+                Request request = new Request(i,video, endpoint,Int32.Parse(request_line[2]));
                 video.requests.Add(request);
+                foreach (var serv in endpoint.connections_to_servers.Select(x => x.server))
+                {
+                    if (!video.dict.ContainsKey(serv.id))
+                    {
+                        video.dict.Add(serv.id,new List<Request>());
+                    }
+                    video.dict[serv.id].Add(request);
+                }
                 DataModel.requests.Add(request);
                 file_lines.RemoveAt(0);
             }
+
+            DataModel.numberOfAllRequests = DataModel.requests.Sum(x => x.number_of_requests);
 
             return;
         }
