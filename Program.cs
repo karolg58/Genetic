@@ -14,7 +14,7 @@ namespace genetic
         {
             DataModel data_model = new DataModel();
             InputReader input_reader = new InputReader();
-            input_reader.ReadDataFromFile("data/me_at_the_zoo.in");
+            input_reader.ReadDataFromFile("data/kittens.in");
 
             var selection = new EliteSelection();
             var crossover = new CutAndSpliceCrossover();
@@ -27,7 +27,12 @@ namespace genetic
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
             ga.Termination = new FitnessStagnationTermination(1000);
             int i=0;
-            ga.GenerationRan += (_,__) => Console.WriteLine($"Generation: {i++}, Fitness: {ga.BestChromosome.Fitness}, Best genotype lenght: {ga.BestChromosome.Length}");
+            DateTime t1 = DateTime.Now;
+            ga.GenerationRan += (_,__) => {
+                DateTime t2 = DateTime.Now;
+                Console.WriteLine($"Generation: {i++}, Fitness: {ga.BestChromosome.Fitness}, Best genotype lenght: {ga.BestChromosome.Length}, Counting time = {(t2 - t1).TotalMilliseconds}ms");
+                t1 = t2;
+            };
 
             Console.WriteLine("GA running...");
             ga.Start();

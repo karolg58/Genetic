@@ -3,11 +3,13 @@ using GeneticSharp.Domain.Fitnesses;
 using genetic;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class Fitness : IFitness
 {
     public double Evaluate(IChromosome chromosome)
     {
+        DateTime t0 = DateTime.Now;
         var ourChromosome = chromosome as Chromosome;
         double fitness = 0;
 
@@ -17,6 +19,8 @@ public class Fitness : IFitness
 
         List<VideoAssignment> videoAssignments = ourChromosome.VideoAssignments;
         var fittingAssignments = new List<VideoAssignment>();
+
+        DateTime t1 = DateTime.Now;
         foreach (var assignement in videoAssignments)
         {
             if(assignement.video.size <= serverFreeMemory[assignement.server.id])
@@ -39,8 +43,16 @@ public class Fitness : IFitness
             }
         }
 
+        DateTime t2 = DateTime.Now;
+
         ourChromosome.ReplaceGenes(fittingAssignments);
 
-        return System.Math.Floor(fitness * 1000 / DataModel.requests.Sum(x => x.number_of_requests));
+        var result = System.Math.Floor(fitness * 1000 / DataModel.requests.Sum(x => x.number_of_requests));
+
+        DateTime t3 = DateTime.Now;
+        
+        Console.WriteLine($"Fitnes timing: {(t3 - t0).TotalMilliseconds}ms, initialization = {(t1 - t0).TotalMilliseconds}ms, main loop: {(t2 - t1).TotalMilliseconds}ms, finishing: {(t3 - t2).TotalMilliseconds}ms");
+
+        return result;
     }
 }
