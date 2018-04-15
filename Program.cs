@@ -27,7 +27,14 @@ namespace genetic
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
             ga.Termination = new FitnessStagnationTermination(1000);
             int i=0;
-            ga.GenerationRan += (_,__) => Console.WriteLine($"Generation: {i++}, Fitness: {ga.BestChromosome.Fitness}, Best genotype lenght: {ga.BestChromosome.Length}");
+            DateTime t1 = DateTime.Now;
+            ga.GenerationRan += (_,__) => {
+                DateTime t2 = DateTime.Now;
+                Console.WriteLine($"Generation: {i++}, Fitness: {ga.BestChromosome.Fitness}, Best genotype lenght: {ga.BestChromosome.Length}, Counting time = {(t2 - t1).TotalMilliseconds}ms");
+                t1 = t2;
+                var bestC = ga.BestChromosome as Chromosome;
+                SaveToFile.Save(bestC, @"data\output");
+            };
 
             Console.WriteLine("GA running...");
             ga.Start();
@@ -35,7 +42,6 @@ namespace genetic
 
             var bestChromosome = ga.BestChromosome as Chromosome;
             Console.WriteLine($"Best solution found has fitness: {bestChromosome.Fitness}.");
-
 
             Console.WriteLine("Done");
         }
