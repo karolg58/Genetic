@@ -31,7 +31,7 @@ namespace genetic
                 }
                 content += Environment.NewLine;
             }
-
+            Directory.CreateDirectory(path);
             path = Path.Combine(path, chromosome.Fitness.ToString() + ".txt");
             File.WriteAllText(path, content);
         }

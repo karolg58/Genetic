@@ -33,4 +33,4 @@ msbuild.wrn
 .vs/
 *.pdb
 *.dll
-data/
+data/output/
