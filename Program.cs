@@ -28,7 +28,7 @@ namespace genetic
             Console.WriteLine($"{ReadWatch.ElapsedMilliseconds}");
             var selection = new EliteSelection();
             var crossover = new CutAndSpliceCrossover();
-            var mutation = new Mutation(30);
+            var mutation = new AddGenesMutation(10);
             
             var fitness = new Fitness();
             var chromosome = new Chromosome(3000);

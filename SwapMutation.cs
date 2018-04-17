@@ -3,15 +3,15 @@ using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Mutations;
 using GeneticSharp.Domain.Randomizations;
 
-public class Mutation : MutationBase
+public class SwapMutation : MutationBase
 {
     public int Intesity { get; private set; } = 1;
-    public Mutation(int intesity)
+    public SwapMutation(int intesity)
     {
         Intesity = intesity;
     }
 
-    public Mutation(){}  
+    public SwapMutation(){}  
 
     protected override void PerformMutate(IChromosome chromosome, float probability)
     {
