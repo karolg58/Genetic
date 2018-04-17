@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using GeneticSharp.Domain;
 using GeneticSharp.Domain.Crossovers;
 using GeneticSharp.Domain.Mutations;
@@ -10,44 +11,44 @@ namespace genetic
 {
     class Program
     {
-        public static TimeSpan fitnessGenerationTimeStart {get;set;}
-        public static TimeSpan fitnessGenerationTimeMiddle {get;set;}
-        public static TimeSpan fitnessGenerationTimeEnd {get;set;}
-        public static TimeSpan T11 {get;set;}
-        public static TimeSpan fitnessGenerationTime {get;set;} = new TimeSpan(0);
+        public static Stopwatch ReadWatch {get;set;} = new Stopwatch();
+        public static Stopwatch WholeFitnessWatch {get;set;} = new Stopwatch();
+        public static Stopwatch GenerationWatch {get;set;} = new Stopwatch();
+
         static void Main(string[] args)
         {
             DataModel data_model = new DataModel();
             InputReader input_reader = new InputReader();
-            input_reader.ReadDataFromFile("data/me_at_the_zoo.in");
-
+            ReadWatch.Start();
+            // input_reader.ReadDataFromFile("data/me_at_the_zoo.in");
+            input_reader.ReadDataFromFile("data/videos_worth_spreading.in");
+            // input_reader.ReadDataFromFile("data/trending_today.in");
+            // input_reader.ReadDataFromFile("data/kittens.in");
+            ReadWatch.Stop();
+            Console.WriteLine($"{ReadWatch.ElapsedMilliseconds}");
             var selection = new EliteSelection();
             var crossover = new CutAndSpliceCrossover();
-            var mutation = new Mutation();
+            var mutation = new Mutation(30);
             
             var fitness = new Fitness();
-            var chromosome = new Chromosome(100);
-            var population = new Population(100, 100, chromosome);
+            var chromosome = new Chromosome(3000);
+            var population = new Population(1000, 1000, chromosome);
 
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new FitnessStagnationTermination(1000);
+            ga.MutationProbability = 0.25f;
+            ga.Termination = new GenerationNumberTermination(250);
             int i=0;
-            DateTime t1 = DateTime.Now;
             ga.GenerationRan += (_,__) => {
-                DateTime t2 = DateTime.Now;
-                Console.WriteLine($"Generation: {i++}, Fitness: {ga.BestChromosome.Fitness}, Best genotype lenght: {ga.BestChromosome.Length}, Counting time = {(t2 - t1).Ticks}, Fitness time = {fitnessGenerationTime.Ticks}, Percentage: {((float)fitnessGenerationTime.Ticks/(float)(t2 - t1).Ticks)}");
-                // Console.WriteLine($"Generation: {i++}, Fitness: {ga.BestChromosome.Fitness}, Best genotype lenght: {ga.BestChromosome.Length},  PercentageMiddle: {((float)fitnessGenerationTimeMiddle.Ticks/(float)(t2 - t1).Ticks)}, PercentageFitness: {((float)T11.Ticks/(float)(t2 - t1).Ticks)}");
-                fitnessGenerationTime = new TimeSpan(0);
-                fitnessGenerationTimeStart = new TimeSpan(0);
-                fitnessGenerationTimeMiddle = new TimeSpan(0);
-                fitnessGenerationTimeEnd = new TimeSpan(0);
-                T11 = new TimeSpan(0);
-                t1 = t2;
                 var bestC = ga.BestChromosome as Chromosome;
                 SaveToFile.Save(bestC, @"data\output");
+                Console.WriteLine($@"G.num.: {i++}, Fitness: {ga.BestChromosome.Fitness}, Lenght: {ga.BestChromosome.Length}, generation time = {GenerationWatch.ElapsedMilliseconds}, Fitness time = {WholeFitnessWatch.ElapsedMilliseconds}, Fitness percentage: {((float)WholeFitnessWatch.ElapsedMilliseconds/(float)GenerationWatch.ElapsedMilliseconds)}");
+
+                GenerationWatch.Restart();
+                WholeFitnessWatch.Reset();
             };
 
             Console.WriteLine("GA running...");
+            GenerationWatch.Start();
             ga.Start();
             Console.WriteLine($"GA done in {ga.GenerationsNumber} generations.");
 
