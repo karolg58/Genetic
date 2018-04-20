@@ -16,7 +16,7 @@ public class SwapMutation : MutationBase
     protected override void PerformMutate(IChromosome chromosome, float probability)
     {
         var rng = RandomizationProvider.Current.GetFloat();
-        if (rng > probability)
+        if (rng <= probability)
         {
             var ourChromosome = chromosome as Chromosome;
             for (int i = 0; i < Intesity; i++)

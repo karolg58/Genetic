@@ -22,8 +22,8 @@ namespace genetic
             DataModel data_model = new DataModel();
             InputReader input_reader = new InputReader();
             ReadWatch.Start();
-            input_reader.ReadDataFromFile("data/me_at_the_zoo.in");
-            // input_reader.ReadDataFromFile("data/videos_worth_spreading.in");
+            // input_reader.ReadDataFromFile("data/me_at_the_zoo.in");
+            input_reader.ReadDataFromFile("data/videos_worth_spreading.in");
             // input_reader.ReadDataFromFile("data/trending_today.in");
             // input_reader.ReadDataFromFile("data/kittens.in");
             ReadWatch.Stop();
@@ -31,38 +31,33 @@ namespace genetic
 
             var fitness = new Fitness();
             var chromosome = new Chromosome(3000);
-            var mutation = new SwapMutation(1);
-            var population = new Population(200, 100000, chromosome);
-            var timeEvolvingTermination = new TimeEvolvingTermination(new TimeSpan(0, 0, 15));
+            var mutation = new BruteforceMutation(10);
+            var population = new Population(2000, 100000, chromosome);
+            var timeEvolvingTermination = new TimeEvolvingTermination(new TimeSpan(0, 10, 0));
+            var generationsNumberTermination = new GenerationNumberTermination(500);
             int i = 0; 
-            const float mutationPropability = 0.25f;
+            const float mutationPropability = 1f;
             const float crossoverPropability = 1f;
             var ga = new GeneticAlgorithm(population, fitness, new EliteSelection(), new CutAndSpliceCrossover(), mutation);
             ga.MutationProbability = mutationPropability;
-            ga.CrossoverProbability = crossoverPropability;
-            ga.Termination = timeEvolvingTermination;
-            ga.GenerationRan += (_, __) =>
-            {
-                i = PrintGenerationData(i, ga);
-            };
+            // ga.CrossoverProbability = crossoverPropability;
+            ga.Termination = generationsNumberTermination;
+            ga.GenerationRan += (_, __) => i = PrintGenerationData(i, ga);
             ga.TerminationReached += (_, __) => PrintEndData(ga);
 
             Console.WriteLine("GA running...");
             GenerationWatch.Start();
-            ga.Start();
+            // ga.Start();
 
-            // i = 0;
-            // var emasAlgorithm = new GeneticAlgorithm(population, fitness, new EmasSelection(), new CutAndSpliceEmasCrossover(), mutation);
-            // emasAlgorithm.Reinsertion = new EmasReinsertion();
-            // emasAlgorithm.MutationProbability = mutationPropability;
-            // emasAlgorithm.CrossoverProbability = crossoverPropability;
-            // emasAlgorithm.Termination = timeEvolvingTermination;
-            // emasAlgorithm.GenerationRan += (_,__) =>
-            // {
-            //     // i = PrintGenerationData(i, emasAlgorithm);
-            // };
-            // emasAlgorithm.TerminationReached += (_,__) => PrintEndData(emasAlgorithm);
-            // emasAlgorithm.Start();
+            i = 0;
+            var emasAlgorithm = new GeneticAlgorithm(population, fitness, new EmasSelection(), new CutAndSpliceEmasCrossover(), mutation);
+            emasAlgorithm.Reinsertion = new EmasReinsertion();
+            emasAlgorithm.MutationProbability = mutationPropability;
+            emasAlgorithm.CrossoverProbability = crossoverPropability;
+            emasAlgorithm.Termination = timeEvolvingTermination;
+            emasAlgorithm.GenerationRan += (_,__) => i = PrintGenerationData(i, emasAlgorithm);
+            emasAlgorithm.TerminationReached += (_,__) => PrintEndData(emasAlgorithm);
+            emasAlgorithm.Start();
 
             Console.WriteLine("Done");
         }

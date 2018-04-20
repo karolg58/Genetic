@@ -55,6 +55,7 @@ public class Fitness : IFitness
                     if (points > requestPoints[request.Id])
                     {
                         fitness += points - requestPoints[request.Id];
+                        assignement.points += points - requestPoints[request.Id];
                         requestPoints[request.Id] = points;
                     }
                 }

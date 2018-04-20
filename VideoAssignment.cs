@@ -6,6 +6,7 @@ namespace genetic
     {
         public Video video;
         public Server server;
+        public int points = 0;
 
         public VideoAssignment(Server server, Video video)
         {
