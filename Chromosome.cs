@@ -10,8 +10,28 @@ public class Chromosome : ChromosomeBase
     public List<VideoAssignment> VideoAssignments { 
         get => this.GetGenes().Select(x => x.Value as VideoAssignment).ToList();
     }
+
+    public int CurrentEnergy {get;set;}
+    public int DefaultEnergy {get;private set;} = 50;
+    public int Differential {get; private set;} = 10;
+    public int ReproductionThreshhold {get;private set;} = 75;
+    public bool HasReproducedThisGeneration {get;set;} = false;
+
+
+    public Chromosome(int length, int defaultEnergy) : base(length)
+    {
+        CurrentEnergy = DefaultEnergy = defaultEnergy;
+        // VideoAssignments = new List<VideoAssignment>(length);
+        for (int i = 0; i < length; i++)
+        {
+            // VideoAssignments.Add(null);
+            ReplaceGene(i, GenerateGene(i));
+        }
+    }
+
     public Chromosome(int length) : base(length)
     {
+        CurrentEnergy = DefaultEnergy;
         // VideoAssignments = new List<VideoAssignment>(length);
         for (int i = 0; i < length; i++)
         {
@@ -22,7 +42,7 @@ public class Chromosome : ChromosomeBase
 
     public override IChromosome CreateNew()
     {
-        return new Chromosome(Length);
+        return new Chromosome(Length, DefaultEnergy);
     }
 
     public override Gene GenerateGene(int geneIndex)
@@ -57,6 +77,26 @@ public class Chromosome : ChromosomeBase
         for (int i = 0; i < newVideoAssignments.Count; i++)
         {
             ReplaceGene(i, new Gene(newVideoAssignments[i]));
+        }
+    }
+
+    public void DoMeeteing(Chromosome meetingPartner)
+    {
+        // this.HasMetDuringThisGeneration = true;
+        // meetingPartner.HasMetDuringThisGeneration = true;
+        if (CurrentEnergy == 0 || meetingPartner.CurrentEnergy == 0)
+        {
+            return;
+        }
+        if (this > meetingPartner)
+        {
+            CurrentEnergy += Differential;
+            meetingPartner.CurrentEnergy -= Differential;
+        }
+        else if (this < meetingPartner)
+        {
+            CurrentEnergy -= Differential;
+            meetingPartner.CurrentEnergy += Differential;
         }
     }
 }
