@@ -4,9 +4,9 @@ using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Populations;
 using GeneticSharp.Domain.Reinsertions;
 
-public class EmasResinsertion : ReinsertionBase
+public class EmasReinsertion : ReinsertionBase
 {
-    public EmasResinsertion() : base(true, true)
+    public EmasReinsertion() : base(true, true)
     {
     }
 
