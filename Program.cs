@@ -15,7 +15,7 @@ namespace genetic
     class Program
     {
         public static Stopwatch ReadWatch { get; set; } = new Stopwatch();
-        public static string version = "3";//code version (should be the same for muliple running the same code)
+        public static string version = "1";//code version (should be the same for muliple running the same code)
 
         static void Main(string[] args)
         {
@@ -49,7 +49,7 @@ namespace genetic
                             timeEvolvingTermination,
                             mutationPropability,
                             crossoverPropability,
-                            fileName + "_" + version);
+                            version + "_" + fileName);
 
                         Runner.defaultGA(
                             new Population(2000, 100000, new Chromosome(3000)),
@@ -58,7 +58,7 @@ namespace genetic
                             timeEvolvingTermination,
                             mutationPropability,
                             crossoverPropability,
-                            fileName + "_" + version);
+                            version + "_" + fileName);
                     }
                     catch (Exception e)
                     {
