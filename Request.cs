@@ -19,7 +19,7 @@ namespace genetic
             this.video = video;
             this.endpoint = endpoint;
             this.number_of_requests = number_of_requests;
-            servers = endpoint.connections_to_servers.ToDictionary(x => x.server.id, x=> x.latency);//TODO pojawił się wyjątek z duplikatem klucza
+            servers = endpoint.connections_to_servers.ToDictionary(x => x.server.id, x=> x.latency);
         }
 
         public override bool Equals(object obj)
