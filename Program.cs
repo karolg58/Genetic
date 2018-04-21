@@ -15,11 +15,11 @@ namespace genetic
     class Program
     {
         public static Stopwatch ReadWatch { get; set; } = new Stopwatch();
-        public static string version = "2";//code version (should be the same for muliple running the same code)
+        public static string version = "3";//code version (should be the same for muliple running the same code)
 
         static void Main(string[] args)
         {
-            var timeEvolvingTermination = new TimeEvolvingTermination(new TimeSpan(0, 1, 0));
+            var timeEvolvingTermination = new TimeEvolvingTermination(new TimeSpan(0, 50, 0));
             //var generationsNumberTermination = new GenerationNumberTermination(500);
             const float mutationPropability = 1f;
             const float crossoverPropability = 1f;

@@ -25,7 +25,7 @@ namespace genetic
             ga.GenerationRan += (_, __) => i = PrintGenerationData(i, ga, plotsFilePath);
             ga.TerminationReached += (_, __) => PrintEndData(ga);
 
-            Console.WriteLine("GA running...");
+            Console.WriteLine("default_" + version + "GA running...");
             GenerationWatch.Start();
             ga.Start();
         }
@@ -41,7 +41,7 @@ namespace genetic
             emasAlgorithm.GenerationRan += (_,__) => i = PrintGenerationData(i, emasAlgorithm, plotsFilePath);
             emasAlgorithm.TerminationReached += (_,__) => PrintEndData(emasAlgorithm);
 
-            Console.WriteLine("GA running...");
+            Console.WriteLine("emas_" + version + "GA running...");
             GenerationWatch.Start();
             emasAlgorithm.Start();
         }
