@@ -11,7 +11,7 @@ public class Fitness : IFitness
     public static List<int> requestPointsBase = DataModel.requests.Select(x => 0).ToList();
     public double Evaluate(IChromosome chromosome)
     {
-        Program.WholeFitnessWatch.Start();
+        Runner.WholeFitnessWatch.Start();
         var serverFreeMemory = new List<int>(serverFreeMemoryBase);
         var requestPoints = new List<int>(requestPointsBase);
         var cachedVideos = DataModel.servers.ToDictionary(x => x.id,x => new List<int>());
@@ -66,5 +66,11 @@ public class Fitness : IFitness
 
         var result = System.Math.Floor(fitness * 1000 / DataModel.numberOfAllRequests);
         return result;
+    }
+
+    internal static void Reset()
+    {
+        serverFreeMemoryBase = DataModel.servers.Select(x => x.capacity).ToList();
+        requestPointsBase = DataModel.requests.Select(x => 0).ToList();
     }
 }

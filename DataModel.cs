@@ -17,5 +17,12 @@ namespace genetic
         public static List<Server> servers = new List<Server>();
         public static List<Connection> connections = new List<Connection>();
 
+        public static void Reset(){
+            videos = new List<Video>();
+            endpoints = new List<Endpoint>();
+            requests = new List<Request>();
+            servers = new List<Server>();
+            connections = new List<Connection>();
+        }
     }
 }
