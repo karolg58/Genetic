@@ -19,7 +19,7 @@ namespace genetic
 
         static void Main(string[] args)
         {
-            var timeEvolvingTermination = new TimeEvolvingTermination(new TimeSpan(0, 50, 0));
+            var minutesTermination = 15;//for the smallest file
             //var generationsNumberTermination = new GenerationNumberTermination(500);
             const float mutationPropability = 1f;
             const float crossoverPropability = 1f;
@@ -29,10 +29,13 @@ namespace genetic
 
             for (int i = 0; i < repeatingCounter; i++)
             {
+                int fileNr = 0;
                 foreach (var fileName in fileNames)
                 {
                     try
                     {
+                        fileNr += 1;
+                        var timeEvolvingTermination = new TimeEvolvingTermination(new TimeSpan(0, fileNr * minutesTermination, 0));
                         DataModel.Reset();//static fields reset
                         DataModel data_model = new DataModel();
                         InputReader input_reader = new InputReader();                     
