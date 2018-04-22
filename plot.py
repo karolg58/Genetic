@@ -32,10 +32,11 @@ for v in args.versions:
         with open(join(dirPath, filePath), 'r') as f:
             lines = f.readlines()
         lines = lines[1:]
+        timeOffset = int(lines[0].split(',')[1])
         for line in lines:
             values = line.split(',')
             generationNumber.append(int(values[0]))
-            time.append(int(values[1]))
+            time.append(int(values[1]) - timeOffset)
             fitness.append(int(values[2]))
 
         if(isTimeBased):
