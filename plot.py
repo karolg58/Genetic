@@ -48,6 +48,7 @@ for v in args.versions:
     nr += 1
 
 print(colors[0:2])
+plt.title(args.versions[0]+ "(blue)" + " vs " + args.versions[1]+"(green)")
 plt.show()
     
 
