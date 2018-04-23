@@ -25,7 +25,7 @@ namespace genetic
             const float crossoverPropability = 1f;
 
             var fileNames = new List<string> { "me_at_the_zoo", "videos_worth_spreading", "trending_today", "kittens" };
-            var repeatingCounter = 5;
+            var repeatingCounter = 1;
 
             for (int i = 0; i < repeatingCounter; i++)
             {
