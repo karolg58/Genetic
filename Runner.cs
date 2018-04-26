@@ -33,7 +33,7 @@ namespace genetic
         public static void emasGA(Population population, Fitness fitness, MutationBase mutation, TerminationBase termination, float mutationPropability, float crossoverPropability, string version){
             string plotsFilePath = SaveToFile.initFilesForPlots(version + "_emas", DateTime.Now.Ticks.ToString());//delete if exists
             int i = 0;
-            var emasAlgorithm = new GeneticAlgorithm(population, fitness, new EmasSelection(), new CutAndSpliceEmasCrossover(), mutation);
+            var emasAlgorithm = new GeneticAlgorithm(population, fitness, new EmasSelection(), new SmartCrossover(), mutation);
             emasAlgorithm.Reinsertion = new EmasReinsertion();
             emasAlgorithm.MutationProbability = mutationPropability;
             emasAlgorithm.CrossoverProbability = crossoverPropability;

@@ -18,7 +18,7 @@ isTimeBased = True
 if(args.isTimeBased):
      isTimeBased = args.isTimeBased
 
-colors = list(mcolors.BASE_COLORS) + list(mcolors.CSS4_COLORS)
+colors = ['b', 'r']#ist(mcolors.BASE_COLORS) + list(mcolors.CSS4_COLORS)
 nr = 0
 for v in args.versions:
     dirPath = join("data", "plots", v)
@@ -48,7 +48,7 @@ for v in args.versions:
     nr += 1
 
 print(colors[0:2])
-plt.title(args.versions[0]+ "(blue)" + " vs " + args.versions[1]+"(green)")
+plt.title(args.versions[0]+ "(blue)" + " vs " + args.versions[1]+"(red)")
 plt.show()
     
 
