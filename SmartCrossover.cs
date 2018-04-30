@@ -10,8 +10,6 @@ namespace GeneticSharp.Domain.Crossovers
 {
     public class SmartCrossover : CrossoverBase
     {
-        public static List<int> serverFreeMemoryBase = DataModel.servers.Select(x => x.capacity).ToList();
-
         public SmartCrossover()
             : base(2, 1)
         {
@@ -49,7 +47,7 @@ namespace GeneticSharp.Domain.Crossovers
             var count = distinctVideoAssignmnets.Count();
             var childVideoAssignments = new List<VideoAssignment>(distinctVideoAssignmnets.OrderBy(x => RandomizationProvider.Current.GetInt(0,count*32)));
             var fittingChildVideoAssignments = new List<VideoAssignment>();
-            var serverFreeMemory = new List<int>(serverFreeMemoryBase);
+            var serverFreeMemory = DataModel.servers.Select(x => x.capacity).ToList();
             foreach (var videoAssignment in childVideoAssignments)
             {
                 if (serverFreeMemory[videoAssignment.server.id] >= videoAssignment.video.size)
