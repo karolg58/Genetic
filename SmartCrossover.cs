@@ -20,6 +20,7 @@ namespace GeneticSharp.Domain.Crossovers
 
         protected override IList<IChromosome> PerformCross(IList<IChromosome> parents)
         {
+            Runner.WholeCrossoverWatch.Start();
             var parent1 = parents[0] as Chromosome;
             var parent2 = parents[1] as Chromosome;
 
@@ -30,34 +31,34 @@ namespace GeneticSharp.Domain.Crossovers
             var rightVideAssignments = parent2.VideoAssignments;
             var distinctVideoAssignmnets = leftVideoAssignments.Concat(rightVideAssignments).Distinct();
 
+            Runner.Crossover1Watch.Start();
             var childGenotype = GetChildGenotype(distinctVideoAssignmnets);
+            Runner.Crossover1Watch.Stop();
 
+            Runner.Crossover2Watch.Start();
             Chromosome chromosome = new Chromosome(childGenotype.Count, parent1.DefaultEnergy);
             chromosome.ReplaceGenes(childGenotype);
             var newChromosomes = new List<IChromosome>() { chromosome };
+            Runner.Crossover2Watch.Stop();
+            Runner.WholeCrossoverWatch.Stop();
             return newChromosomes;
         }
 
         private static List<VideoAssignment> GetChildGenotype(IEnumerable<VideoAssignment> distinctVideoAssignmnets)
         {
-            var childVideoAssignments = new List<VideoAssignment>(distinctVideoAssignmnets);
+            var count = distinctVideoAssignmnets.Count();
+            var childVideoAssignments = new List<VideoAssignment>(distinctVideoAssignmnets.OrderBy(x => RandomizationProvider.Current.GetInt(0,count*32)));
             var fittingChildVideoAssignments = new List<VideoAssignment>();
             var serverFreeMemory = new List<int>(serverFreeMemoryBase);
-            while (childVideoAssignments.Any())
+            foreach (var videoAssignment in childVideoAssignments)
             {
-                var videoAssignment = childVideoAssignments[RandomizationProvider.Current.GetInt(0, childVideoAssignments.Count)];
                 if (serverFreeMemory[videoAssignment.server.id] >= videoAssignment.video.size)
                 {
                     serverFreeMemory[videoAssignment.server.id] -= videoAssignment.video.size;
                     fittingChildVideoAssignments.Add(videoAssignment);
-                    childVideoAssignments.Remove(videoAssignment);
                 }
-                else
-                {
-                    childVideoAssignments.Remove(videoAssignment);
-                }
-            }
 
+            }
             return fittingChildVideoAssignments;
         }
     }

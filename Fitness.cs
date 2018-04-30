@@ -65,6 +65,7 @@ public class Fitness : IFitness
         ourChromosome.ReplaceGenes(fittingAssignments);
 
         var result = System.Math.Floor(fitness * 1000 / DataModel.numberOfAllRequests);
+        Runner.WholeFitnessWatch.Stop();
         return result;
     }
 

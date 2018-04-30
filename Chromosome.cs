@@ -12,9 +12,9 @@ public class Chromosome : ChromosomeBase
     }
 
     public int CurrentEnergy {get;set;}
-    public int DefaultEnergy {get;private set;} = 50;
+    public int DefaultEnergy {get;private set;} = 60;
     public int Differential {get; private set;} = 10;
-    public int ReproductionThreshhold {get;private set;} = 75;
+    public int ReproductionThreshhold {get;private set;} = 80;
     public bool HasReproducedThisGeneration {get;set;} = false;
 
 

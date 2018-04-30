@@ -13,6 +13,9 @@ namespace genetic
     public static class Runner
     {
         public static Stopwatch WholeFitnessWatch {get;set;} = new Stopwatch();
+        public static Stopwatch WholeCrossoverWatch {get;set;} = new Stopwatch();
+        public static Stopwatch Crossover1Watch {get;set;} = new Stopwatch();
+        public static Stopwatch Crossover2Watch {get;set;} = new Stopwatch();
         public static Stopwatch GenerationWatch {get;set;} = new Stopwatch();
         public static Stopwatch ForPlotsWatch {get;set;} = new Stopwatch();
         public static void defaultGA(Population population, Fitness fitness, MutationBase mutation, TerminationBase termination, float mutationPropability, float crossoverPropability, string version){
@@ -60,10 +63,13 @@ namespace genetic
             //SaveToFile.Save(bestC, @"data\output");
             if(i == 0) ForPlotsWatch.Start();
             SaveToFile.PlotsData(i, bestC.Fitness, plotsFilePath, ForPlotsWatch);
-            Console.WriteLine($@"G.num.: {i++}, Population Count: {ga.Population.CurrentGeneration.Chromosomes.Count}, Energy Sum: {ga.Population.CurrentGeneration.Chromosomes.Sum(x => (x as Chromosome).CurrentEnergy)} Fitness: {ga.BestChromosome.Fitness}, Lenght: {ga.BestChromosome.Length}, generation time = {GenerationWatch.ElapsedMilliseconds}, Fitness time = {WholeFitnessWatch.ElapsedMilliseconds}, Fitness percentage: {((float)WholeFitnessWatch.ElapsedMilliseconds / (float)GenerationWatch.ElapsedMilliseconds)}");
+            Console.WriteLine($@"G.num.: {i++}, Pop. Count: {ga.Population.CurrentGeneration.Chromosomes.Count}, Energy Sum: {ga.Population.CurrentGeneration.Chromosomes.Sum(x => (x as Chromosome).CurrentEnergy)} Fitness: {ga.BestChromosome.Fitness}, Lenght: {ga.BestChromosome.Length}, generation time = {GenerationWatch.ElapsedMilliseconds}, Crossover time = {WholeCrossoverWatch.ElapsedMilliseconds}, cross1: {Crossover1Watch.ElapsedMilliseconds}, cross2: {Crossover2Watch.ElapsedMilliseconds}");
 
             GenerationWatch.Restart();
             WholeFitnessWatch.Reset();
+            Crossover1Watch.Reset();
+            Crossover2Watch.Reset();
+            WholeCrossoverWatch.Reset();
             return i;
         }
     }
