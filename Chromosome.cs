@@ -21,10 +21,8 @@ public class Chromosome : ChromosomeBase
     public Chromosome(int length, int defaultEnergy) : base(length)
     {
         CurrentEnergy = DefaultEnergy = defaultEnergy;
-        // VideoAssignments = new List<VideoAssignment>(length);
         for (int i = 0; i < length; i++)
         {
-            // VideoAssignments.Add(null);
             ReplaceGene(i, GenerateGene(i));
         }
     }
@@ -32,10 +30,8 @@ public class Chromosome : ChromosomeBase
     public Chromosome(int length) : base(length)
     {
         CurrentEnergy = DefaultEnergy;
-        // VideoAssignments = new List<VideoAssignment>(length);
         for (int i = 0; i < length; i++)
         {
-            // VideoAssignments.Add(null);
             ReplaceGene(i, GenerateGene(i));
         }
     }
@@ -70,9 +66,7 @@ public class Chromosome : ChromosomeBase
                 continue;
             }
             newVideoAssignments.Add(tmp);
-            // newVideoAssignments = newVideoAssignments.Distinct().ToList(); //StackOverflowException
         }
-        // VideoAssignments = newVideoAssignments;
         Resize(newVideoAssignments.Count);
         for (int i = 0; i < newVideoAssignments.Count; i++)
         {

@@ -48,7 +48,10 @@ namespace genetic
 
         public override int GetHashCode()
         {
-            return this.GetHashCode();
+            int hash = 17;
+            hash = 31 * hash + video.id;
+            hash = 31 * hash + server.id;
+            return hash;
         }
     }
 }
