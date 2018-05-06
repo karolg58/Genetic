@@ -15,17 +15,17 @@ namespace genetic
     class Program
     {
         public static Stopwatch ReadWatch { get; set; } = new Stopwatch();
-        public static string version = "1";//code version (should be the same for muliple running the same code)
+        public static string version = "4";//code version (should be the same for muliple running the same code)
 
         static void Main(string[] args)
         {
-            var minutesTermination = 15;//for the smallest file
+            var minutesTermination = 10;//for the smallest file
             //var generationsNumberTermination = new GenerationNumberTermination(500);
             const float mutationPropability = 1f;
             const float crossoverPropability = 1f;
 
             var fileNames = new List<string> { "me_at_the_zoo", "videos_worth_spreading", "trending_today", "kittens" };
-            var repeatingCounter = 1;
+            var repeatingCounter = 5;
 
             for (int i = 0; i < repeatingCounter; i++)
             {

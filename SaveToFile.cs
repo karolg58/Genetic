@@ -57,11 +57,24 @@ namespace genetic
             }
             return filePath;
         }
-        public static void PlotsData(int generationNumber, double? fitness, string filePath, Stopwatch forPlotsWatch)
+        public static void PlotsData(int generationNumber, List<IChromosome> chromosomes, double? fitness, string filePath, Stopwatch forPlotsWatch)
         {
             using (StreamWriter sw = File.AppendText(filePath))
             {
                 sw.WriteLine(generationNumber.ToString() + "," + forPlotsWatch.ElapsedMilliseconds.ToString() + "," + fitness.ToString());
+            }
+            
+            var fitnessPath = filePath.Replace("plots", "fitnessForAll");
+            Directory.CreateDirectory(Path.GetDirectoryName(fitnessPath));
+            using (StreamWriter sw = File.AppendText(fitnessPath))
+            {
+                if(chromosomes != null){
+                    for(int i = 0; i < chromosomes.Count; i++){
+                        sw.Write(chromosomes[i].Fitness);
+                        if(i < chromosomes.Count - 1) sw.Write(",");
+                    }
+                    sw.Write("\n");
+                }
             }
         }
     }

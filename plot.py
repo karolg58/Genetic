@@ -49,6 +49,6 @@ for v in args.versions:
 
 print(colors[0:2])
 plt.title(args.versions[0]+ "(blue)" + " vs " + args.versions[1]+"(red)")
-plt.show()
+plt.savefig(join("data", "plotsPlots", args.versions[0] + "__" + args.versions[1] + ".png"))
     
 
