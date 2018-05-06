@@ -1,3 +1,0 @@
-Generation number, Milliseconds from start, Fitness
-0,0,431230
-1,14,431230
