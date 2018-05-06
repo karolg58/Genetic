@@ -34,3 +34,5 @@ msbuild.wrn
 *.pdb
 *.dll
 data/output/
+data/fitnessForAll
+data/plots
