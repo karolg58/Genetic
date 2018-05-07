@@ -60,9 +60,10 @@ namespace genetic
         private static int PrintGenerationData(int i, GeneticAlgorithm ga, string plotsFilePath)
         {
             var bestC = ga.BestChromosome as Chromosome;
+            var chromosomes = ga.Population.CurrentGeneration.Chromosomes.ToList();
             //SaveToFile.Save(bestC, @"data\output");
             if(i == 0) ForPlotsWatch.Start();
-            SaveToFile.PlotsData(i, bestC.Fitness, plotsFilePath, ForPlotsWatch);
+            SaveToFile.PlotsData(i, chromosomes, bestC.Fitness, plotsFilePath, ForPlotsWatch);
             Console.WriteLine($@"G.num.: {i++}, Pop. Count: {ga.Population.CurrentGeneration.Chromosomes.Count}, Energy Sum: {ga.Population.CurrentGeneration.Chromosomes.Sum(x => (x as Chromosome).CurrentEnergy)} Fitness: {ga.BestChromosome.Fitness}, Lenght: {ga.BestChromosome.Length}, generation time = {GenerationWatch.ElapsedMilliseconds}, Crossover time = {WholeCrossoverWatch.ElapsedMilliseconds}, cross1: {Crossover1Watch.ElapsedMilliseconds}, cross2: {Crossover2Watch.ElapsedMilliseconds}");
 
             GenerationWatch.Restart();
